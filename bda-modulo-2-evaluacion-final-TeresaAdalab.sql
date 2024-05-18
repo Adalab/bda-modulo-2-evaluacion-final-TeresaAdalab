@@ -79,3 +79,15 @@ Hemos usado "WHERE" para filtrar las condiciones de nuestra consulta,
 SELECT first_name, last_name
 FROM actor
 WHERE actor_id BETWEEN 10 AND 20;
+
+-- Ejercicio 8: Título de las películas en la tabla film que no sean ni "R" ni "PG-13" en su clasificación
+/*
+Hemos usado "WHERE" para filtrar las condiciones de nuestra consulta, 
+ Se ha usado el operador "NOT IN"  para excluir todas aquellas peliculas
+ cuya clasificacion es "R" or "P-13"
+*/
+
+SELECT title
+FROM film
+WHERE rating NOT IN ('R', 'PG-13');
+
