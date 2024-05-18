@@ -39,3 +39,12 @@ y "%" para representar cualquier sentencia de caracteres
 SELECT title, description
 FROM film
 WHERE description LIKE '% amazing %';
+
+-- Ejercicio 4:  Título de  las películas con duración mayor a 120 minutos.
+
+SELECT title, length
+FROM film
+WHERE length > 120;
+
+-- Ejercicio 5:  Nombres  de todos los actores.
+
