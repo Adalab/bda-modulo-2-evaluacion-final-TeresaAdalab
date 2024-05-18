@@ -101,3 +101,20 @@ Después hemos usado la sentencia "GROUP BY" para agrupar las filas en función 
 SELECT rating, COUNT(*) AS total_peli_rating
 FROM film
 GROUP BY rating;
+
+-- Ejercicio 10:  Cantidad total de películas alquiladas por cada cliente, con id_cliente, nombre, apellido y cantidad de peliculas alquiladas
+/*
+Estamos utilizando COUNT() para contar el número de alquileres (rental_id) de  cada cliente 
+con la creación de un alias total_rentals
+"INNER JOIN", estamos uniendo la tabla rental (que tiene información sobre los alquileres) con la tabla customer con las 
+ filas de la tabla rental mediante el uso del  customer_id
+Hemos optado por usar un "INNER JOIN" en lugar "LEFT JOIN" porque estamos buscando solo aquellos que son coincidentes en ambas tablas
+Para sacar aquellos clientes que no alquilado nada habría que usar un "LEFT_JOIN"
+Por úlitmo, hemos usado "GROUP BY" para agrupar las filas que contienen los mismos valores, de esta forma solo podremos ver un cliente
+*/
+
+
+SELECT c.customer_id, c.first_name, c.last_name, COUNT(r.rental_id) AS total_rentals
+FROM customer c
+INNER JOIN rental r ON c.customer_id = r.customer_id
+GROUP BY c.customer_id, c.first_name, c.last_name;
