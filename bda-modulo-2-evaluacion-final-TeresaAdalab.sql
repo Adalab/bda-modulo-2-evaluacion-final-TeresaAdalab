@@ -54,12 +54,17 @@ SELECT  first_name
 FROM actor;
 
 -- Ejercicio 6: Encuentra el nombre y apellido de los actores que tengan "Gibson" en su apellido.
-
 /*
-Hamos a usar el operador "LIKE" para saber coincidencias parciales 
+Hay 2 opciones para poder resolver este ejercicio
+1. Usar el operador "LIKE" para saber coincidencias parciales 
 y "%" para representar cualquier sentencia de caracteres 
+2. Mediante el uso de = que sería una busqueda exacta
 */
 
 SELECT first_name, last_name
 FROM actor
 WHERE last_name LIKE '%Gibson%';
+
+SELECT first_name, last_name
+FROM actor
+WHERE last_name = "Gibson";
