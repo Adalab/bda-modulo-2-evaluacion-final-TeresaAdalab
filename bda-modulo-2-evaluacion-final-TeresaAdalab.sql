@@ -241,8 +241,6 @@ COUNT para contar el número de peliculas para cada actor (flim_count),y agrupam
 Por último tenemos la consulta final que selecciona el nombre y el apellido de la tabla actores (a)
 Creamos un "INNER JOIN" entre nuestra tabla actores y el CTE actor_flims mediante el actor_id para unir las filas y asi obtener
 el nombre y apellidos de los actores.
-
-
 */
 
 
@@ -256,7 +254,7 @@ SELECT a.first_name, a.last_name
 FROM actor AS a
 INNER JOIN actor_films ON a.actor_id = actor_films.actor_id;
 
--- Ejercicio 19: Encuentra el título  películas que son "R" y tienen una duración mayor a 2 horas en la tabla film..
+-- Ejercicio 19: Encuentra el título  películas que son "R" y tienen una duración mayor a 2 horas en la tabla film.
 SELECT*
 FROM film
 
@@ -264,3 +262,20 @@ SELECT title, rating, length
 FROM film
 WHERE rating = 'R' AND length > 120
 ORDER BY length DESC ;
+
+-- Ejercicio 20: Categorías de películas con un promedio de duración superior a 120 mins y  muestra el nombre de la categoría junto con el promedio de duración.
+
+/*
+Usamos las tablas category, flim_category y flim que estan relacionadas mediante primary key y foreing keys
+Con los "INNER JOIN" unimos las tablas de flim_category, category y film 
+Calculamos el promedio mediante AVG que es promedio de la duración de cada una de las peliculas en cada categoría.
+Lo argupamos por GROUP BY mediante el nombre de la categoria (c.name) ya que necesitamos saber el promedio para cada categoría
+Usamos"Having" para filtar los resultados cuya duración es mayor a 120 minutos.
+*/
+
+SELECT c.name AS category_name, ROUND(AVG(f.length),2) AS average_duration
+FROM category c
+INNER JOIN film_category fc ON c.category_id = fc.category_id
+INNER JOIN film f ON fc.film_id = f.film_id
+GROUP BY c.name
+HAVING AVG(f.length) > 120;
