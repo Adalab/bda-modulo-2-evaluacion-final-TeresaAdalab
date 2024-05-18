@@ -47,4 +47,8 @@ FROM film
 WHERE length > 120;
 
 -- Ejercicio 5:  Nombres  de todos los actores.
-
+/*
+Hemos usado la tabla actores y seleccionado su nombre y apellidos con un "SELECT"
+*/
+SELECT  first_name, last_name
+FROM actor;
