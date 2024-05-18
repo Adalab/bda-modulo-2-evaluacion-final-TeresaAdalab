@@ -118,3 +118,30 @@ SELECT c.customer_id, c.first_name, c.last_name, COUNT(r.rental_id) AS total_ren
 FROM customer c
 INNER JOIN rental r ON c.customer_id = r.customer_id
 GROUP BY c.customer_id, c.first_name, c.last_name;
+
+-- Ejercicio 11:  cantidad total de películas alquiladas por categoría y muestra el nombre de la categoría junto con el recuento de alquileres
+/*
+En la primera hemos creado un alias category name para asignar un valor a esta columna
+A continuación contamos el número de alquileres mediante COUNT y creamos para ello el alias "Total_rentals"
+Estamos seleccionado la tabla rental mediante un alias (r)
+	**INNER JOIN inventory i ON r.inventory_id = i.inventory_id, estamos uniendo con la tabla inventario con la tabla flim mediante el flim_id
+	**INNER JOIN film f ON i.film_id = f.film_id; Unimos la tabla flim con la tabla inventario mediante el flim_id
+	**INNER JOIN film_category fc ON f.film_id = fc.film_id; Unimos la tabla categoria de las peliculas(flim_category) con la tabla flim category mediante flim_id.
+	**INNER JOIN category c ON fc.category_id = c.category_id; Unimos las filas de la tabla film_category con las filas de la tabla category basándote en el category_id
+GROUP BY: Aqui hemos agrupado las filas que contienen los mismos valores en una sola columna
+ORDER BY: Despúes lo hemos ordendo los resultados de menor a mayor mediante el campo total_rental (total alquileres)
+*/
+
+SELECT c.name AS category_name, COUNT(r.rental_id) AS total_rentals
+FROM rental r
+INNER JOIN inventory i ON r.inventory_id = i.inventory_id
+INNER JOIN film f ON i.film_id = f.film_id
+INNER JOIN film_category fc ON f.film_id = fc.film_id
+INNER JOIN category c ON fc.category_id = c.category_id
+GROUP BY c.name
+ORDER BY total_rentals DESC;
+
+
+
+
+
