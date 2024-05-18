@@ -178,3 +178,13 @@ WHERE actor.actor_id IN (
         WHERE film.title = 'Indian Love'
     )
 );
+
+-- Ejercicio 14:Título de  las películas que contengan la palabra "dog" o "cat" en su descripción
+
+/*
+Usamos " WHERE description LIKE  OR", para buscar las palabras que en la columna descripcion contenga dog o cat m
+*/
+SELECT title, description
+FROM film
+WHERE description LIKE '%dog%'
+   OR description LIKE '%cat%';
