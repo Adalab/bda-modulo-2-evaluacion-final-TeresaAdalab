@@ -232,3 +232,26 @@ FROM film AS f
 INNER JOIN film_category AS fc ON f.film_id = fc.film_id
 WHERE fc.category_id IN 
 	(SELECT category_id FROM family_category );
+    
+-- Ejercicio 18: Muestra  nombre y apellido de los actores que aparecen en más de 10 películas.
+/*
+Creación de una CTE actor_films que cuenta el número de peliculas, tiene una consulta que selecciona el actor_id y usa el 
+COUNT para contar el número de peliculas para cada actor (flim_count),y agrupamos los resultados GROUP BY por actor_id.
+*HAVING COUNT* hemos seleccionado solo los actores que han participado en mas de 10 peliculas.alter
+Por último tenemos la consulta final que selecciona el nombre y el apellido de la tabla actores (a)
+Creamos un "INNER JOIN" entre nuestra tabla actores y el CTE actor_flims mediante el actor_id para unir las filas y asi obtener
+el nombre y apellidos de los actores.
+
+
+*/
+
+
+WITH actor_films AS (
+    SELECT actor_id, COUNT(*) AS film_count
+    FROM film_actor
+    GROUP BY actor_id
+    HAVING COUNT(*) > 10
+)
+SELECT a.first_name, a.last_name
+FROM actor AS a
+INNER JOIN actor_films ON a.actor_id = actor_films.actor_id;
