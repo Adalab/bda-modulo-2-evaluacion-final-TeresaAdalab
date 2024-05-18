@@ -7,10 +7,10 @@ SHOW TABLES;
 
 -- Ejercicio 1: Nombres de las películas sin que aparezcan duplicados.
 /*
-Hemos creado un alias "flim_name y hemos usado DISTINCT 
+Hemos creado un alias "film_name y hemos usado DISTINCT 
 que nos ha ayudado a eliminar los duplicados para tener solo un titulo de la pelicula
 */
-SELECT DISTINCT title as "flim_name"
+SELECT DISTINCT title as "film_name"
 FROM film;
 
 -- Ejercicio 2: Nombres de películas que tengan una clasificación de "PG-13.
@@ -124,9 +124,9 @@ GROUP BY c.customer_id, c.first_name, c.last_name;
 En la primera hemos creado un alias category name para asignar un valor a esta columna
 A continuación contamos el número de alquileres mediante COUNT y creamos para ello el alias "Total_rentals"
 Estamos seleccionado la tabla rental mediante un alias (r)
-	**INNER JOIN inventory i ON r.inventory_id = i.inventory_id, estamos uniendo con la tabla inventario con la tabla flim mediante el flim_id
-	**INNER JOIN film f ON i.film_id = f.film_id; Unimos la tabla flim con la tabla inventario mediante el flim_id
-	**INNER JOIN film_category fc ON f.film_id = fc.film_id; Unimos la tabla categoria de las peliculas(flim_category) con la tabla flim category mediante flim_id.
+	**INNER JOIN inventory i ON r.inventory_id = i.inventory_id, estamos uniendo con la tabla inventario con la tabla film mediante el film_id
+	**INNER JOIN film f ON i.film_id = f.film_id; Unimos la tabla film con la tabla inventario mediante el film_id
+	**INNER JOIN film_category fc ON f.film_id = fc.film_id; Unimos la tabla categoria de las peliculas(film_category) con la tabla film category mediante film_id.
 	**INNER JOIN category c ON fc.category_id = c.category_id; Unimos las filas de la tabla film_category con las filas de la tabla category basándote en el category_id
 GROUP BY: Aqui hemos agrupado las filas que contienen los mismos valores en una sola columna
 ORDER BY: Despúes lo hemos ordendo los resultados de menor a mayor mediante el campo total_rental (total alquileres)
@@ -141,7 +141,7 @@ INNER JOIN category c ON fc.category_id = c.category_id
 GROUP BY c.name
 ORDER BY total_rentals DESC;
 
--- Ejercicio 12:  Promedio de duración de las películas para cada clasificación de la tabla flim y  muestra la clasificación junto con el promedio de duración.
+-- Ejercicio 12:  Promedio de duración de las películas para cada clasificación de la tabla film y  muestra la clasificación junto con el promedio de duración.
 /*
 AVG(length) AS avg_duration: Mediante esta sentencia calculamos el valor medio de la duración (length) de las películas para cada clasificación
 Y le añadimos el alias avg duration y lo hemos redondeado mediante ROUND
@@ -155,13 +155,13 @@ GROUP BY rating;
 
 -- Ejercicio 13:  Encuentra el nombre y apellido de los actores que aparecen en la película con title "Indian Love".
 /*
-Para resolver este ejercicio hemos realizado una subconsulta que nos permite tener el flim_id 
+Para resolver este ejercicio hemos realizado una subconsulta que nos permite tener el film_id 
 y luego otra subconsulta más para tener el actor_id
 
 Primero seleccionamos los campos de nombre y apellidos de la tabla de actores que es la que contiene esta información.
 ** Subconsulta 1 WHERE actor.actor_id IN, se filtran los resultados de la tabla actor y solo se incluyen los actores que tenga un actor_id dentro de la 
-** Subconsulta 2 SELECT film_actor.actor_id. Selecciona el "actor_id" de la flim_actor y donde actor flim_id coincida con los resultados que el titulo de la pelicula sea Indian Love
-** Subconsulta 3:  SELECT film_id. Estamos seleccionado de la tabla flim title aquella pelicula cuyo titulo es Indian Love
+** Subconsulta 2 SELECT film_actor.actor_id. Selecciona el "actor_id" de la film_actor y donde actor film_id coincida con los resultados que el titulo de la pelicula sea Indian Love
+** Subconsulta 3:  SELECT film_id. Estamos seleccionado de la tabla film title aquella pelicula cuyo titulo es Indian Love
 
 Es decir usamos varias subconsultas para encontrar primero el film_id de "Indian Love" y luego los actor_id asociados 
 Cogemos  los nombres y apellidos de los actores cuyos actor_id coinciden con los obtenidos en la subconsulta.
@@ -192,8 +192,8 @@ WHERE description LIKE '%dog%'
 -- Ejercicio 15: Actor o actriz que no apareca en ninguna película en la tabla film_actor.
 /*
 Seleccionamos los datos del actor de la tabla actor
-LEFT JOIN, realizamos una unión entre las tablas flim_actor y actor usando el actor_id como id, 
-Al usar "LEFT JOIN" incluimos todas las filas de la tabla actor y solo las filas conincidentes de la tabla flim_actor.
+LEFT JOIN, realizamos una unión entre las tablas film_actor y actor usando el actor_id como id, 
+Al usar "LEFT JOIN" incluimos todas las filas de la tabla actor y solo las filas conincidentes de la tabla film_actor.
 Si no hay coincidencias, los campos de film_actor serán NULL.
 "WHERE " hace un filtro para incluir los valordes donde el actor no aparece en niguna pelicula
 */
@@ -215,7 +215,7 @@ WHERE release_year BETWEEN 2005 AND 2010;
 Para poder resolver este ejercicio hemos usado una CTE llamada family_category que selecciona el category_id de la 
 tabla category donde el nombre sea Family
 Despues hemos realizado la consulta donde se ha seleccionado el titulo de las peliculas (title) de la tabla film con el alias f
-Mediante el INNER JOIN hemos unido las tablas film y film_category con el flim id y filtramos con "WHERE" incluyendo
+Mediante el INNER JOIN hemos unido las tablas film y film_category con el film id y filtramos con "WHERE" incluyendo
 los resultados  donde category_id esté presente en los resultados de la consulta temporal
 Por último tenemos una subconsulta para seleccionar aquellas categorias de producto que son Family
 
@@ -236,10 +236,10 @@ WHERE fc.category_id IN
 -- Ejercicio 18: Muestra  nombre y apellido de los actores que aparecen en más de 10 películas.
 /*
 Creación de una CTE actor_films que cuenta el número de peliculas, tiene una consulta que selecciona el actor_id y usa el 
-COUNT para contar el número de peliculas para cada actor (flim_count),y agrupamos los resultados GROUP BY por actor_id.
+COUNT para contar el número de peliculas para cada actor (film_count),y agrupamos los resultados GROUP BY por actor_id.
 *HAVING COUNT* hemos seleccionado solo los actores que han participado en mas de 10 peliculas.alter
 Por último tenemos la consulta final que selecciona el nombre y el apellido de la tabla actores (a)
-Creamos un "INNER JOIN" entre nuestra tabla actores y el CTE actor_flims mediante el actor_id para unir las filas y asi obtener
+Creamos un "INNER JOIN" entre nuestra tabla actores y el CTE actor_films mediante el actor_id para unir las filas y asi obtener
 el nombre y apellidos de los actores.
 */
 
@@ -265,8 +265,8 @@ ORDER BY length DESC ;
 
 -- Ejercicio 20: Categorías de películas con un promedio de duración superior a 120 mins y  muestra el nombre de la categoría junto con el promedio de duración.
 /*
-Usamos las tablas category, flim_category y flim que estan relacionadas mediante primary key y foreing keys
-Con los "INNER JOIN" unimos las tablas de flim_category, category y film 
+Usamos las tablas category, film_category y film que estan relacionadas mediante primary key y foreing keys
+Con los "INNER JOIN" unimos las tablas de film_category, category y film 
 Calculamos el promedio mediante AVG que es promedio de la duración de cada una de las peliculas en cada categoría.
 Lo argupamos por GROUP BY mediante el nombre de la categoria (c.name) ya que necesitamos saber el promedio para cada categoría
 Usamos"Having" para filtar los resultados cuya duración es mayor a 120 minutos.
@@ -284,7 +284,7 @@ HAVING AVG(f.length) > 120;
 /*
 Seleccionamos el mombre y el apellido de la tabla de actores, esta tabla tiene el alias ac
 Unimos las tablas con "INNER JOIN" para tener los datos de la tabla actores y con la tabla de relacion entre
-actores y peliculas (flim_actor(fa)) para saber que actores participan en las peliculas
+actores y peliculas (film_actor(fa)) para saber que actores participan en las peliculas
 Agrupamos con "GROUP BY" por el actor_id de la tabla actores(ac)	
 *HAVING COUNT*, Hemos usado el Count para saber las peliculas hay en cada grupo de actores y despues se ha filtrado por 
 HAVING para seleccionar solo los que tiene mas de 5
@@ -298,21 +298,67 @@ HAVING COUNT(*) >= 5;
 
 -- Ejercicio 22: las películas que fueron alquiladas por más de 5 días.
 
-/*
-Creamos una subconsulta para sacar los id  unicos  mediante el IN para seleccionar las peliculas cuyos ID sean diferentes a través de DISTINCT de las peliculas film_id de la tabla rental,
-para saber as peliculas que han sido alquiladas
-Despues con "WHERE DATEDIFF" dentro de la subconsulta hallamos la diferencia entre las fechas de devolucion (return_date) y del alquiler
-(rental_date) que sea mayor que 5
-
-Seleccionamos los titulos de la tabla film los titulos de lsa peliculas y despues con "WHERE" se obtienen los film id que estan dentro de la subconsulta
-
-
-
+/* Hemos creado una CTE large_rental que va a contener una subconsulta que selecciona los film_id de las peliculas con mas de 5 dias
+Con SELECT DISTINCT solo aparece una sola vez film_id de la tabla inventory
+"INNER JOIN" unimos las tablas de rental con la inventarios mediante el inventory_id
+"WHERE DATEDIFF(r.return_date, r.rental_date) > 5" filtra los registros para incluir solo aquellos con una diferencia de más de 5 días entre return_date y rental_date
+Despues de la CTE hacemos una consulta que selecciona los titulos de la tabla film y filtra las peliculas cuyos film id estan en el film id de la CTE
 */
+
+WITH large_rental AS (
+    SELECT DISTINCT i.film_id
+    FROM rental AS r
+    INNER JOIN inventory AS i ON r.inventory_id = i.inventory_id
+    WHERE DATEDIFF(r.return_date, r.rental_date) > 5
+)
+SELECT title
+FROM film
+WHERE film_id IN (SELECT film_id FROM  large_rental);
+
+
+-- Ejercicio 23: Nombre y apellido actores que no han actuado en ninguna pelicula de Horror, mediante una subconsulta
+
+/*
+Seleccionamos los campos first_name y last_name de la tabla actor que tiene el alias alter
+Hacemos un filtro de los actores mediante WHERE y NOT IN tomando como referencia la subconsulta
+En la subconsulta seleccionamos los actor_id de la tabla film actor (fa)
+Usamos un INNER JOIN entre la tabla de film category (fc) y film actor (fa) por el film_id de ambas.
+Despues creamos otro INNER JOIN entre la tabla category (c) y film category (fc) por category_id de ambas
+Y con el WHERE filtramos donde la categoria sea Horror
+*/
+
+SELECT a.first_name, a.last_name
+FROM actor AS a
+WHERE a.actor_id NOT IN (
+    SELECT fa.actor_id
+    FROM film_actor AS fa
+    INNER JOIN film_category AS fc ON fa.film_id = fc.film_id
+    INNER JOIN category AS c ON fc.category_id = c.category_id
+    WHERE c.name = 'Horror'
+);
+
+-- Ejercicio 24: Encuentra el título de las películas que son comedias y tienen una duración mayor 180 minutos en la tabla film
+/*
+Hemos creado una CTE que se llama Comedias
+En la cual hay una consulta que selecciona los film_id de la tabla film category
+Despues hay una subconsulta que selecciona el category_id de la tabla category donde el nombre sea Comedia
+En la siguiente parte del código hemos seleccionado de la tabla film los titulos que este dentro de los resultados de la CTE
+En esta parte de la subconsulta seleccionamos los flim_id de la CTE y agregamos la condicion mediante AND y que length sea mayor a 180
+*/
+
+WITH Comedias AS (
+    SELECT film_id
+    FROM film_category
+    WHERE category_id IN (
+        SELECT category_id
+        FROM category
+        WHERE name = 'Comedy'
+    )
+)
+
 SELECT title
 FROM film
 WHERE film_id IN (
-    SELECT DISTINCT film_id
-    FROM rental
-    WHERE DATEDIFF(return_date, rental_date) > 5
-);
+    SELECT film_id
+    FROM Comedias
+) AND length > 180;
