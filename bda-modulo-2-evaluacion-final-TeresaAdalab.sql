@@ -264,7 +264,6 @@ WHERE rating = 'R' AND length > 120
 ORDER BY length DESC ;
 
 -- Ejercicio 20: Categorías de películas con un promedio de duración superior a 120 mins y  muestra el nombre de la categoría junto con el promedio de duración.
-
 /*
 Usamos las tablas category, flim_category y flim que estan relacionadas mediante primary key y foreing keys
 Con los "INNER JOIN" unimos las tablas de flim_category, category y film 
@@ -279,3 +278,22 @@ INNER JOIN film_category fc ON c.category_id = fc.category_id
 INNER JOIN film f ON fc.film_id = f.film_id
 GROUP BY c.name
 HAVING AVG(f.length) > 120;
+
+-- Ejercicio 21: Categorías de películas con un promedio de duración superior a 120 mins y  muestra el nombre de la categoría junto con el promedio de duración.
+
+/*
+Seleccionamos el mombre y el apellido de la tabla de actores, esta tabla tiene el alias ac
+Unimos las tablas con "INNER JOIN" para tener los datos de la tabla actores y con la tabla de relacion entre
+actores y peliculas (flim_actor(fa)) para saber que actores participan en las peliculas
+Agrupamos con "GROUP BY" por el actor_id de la tabla actores(ac)	
+*HAVING COUNT*, Hemos usado el Count para saber las peliculas hay en cada grupo de actores y despues se ha filtrado por 
+HAVING para seleccionar solo los que tiene mas de 5
+*/
+
+SELECT ac.first_name, ac.last_name, COUNT(*) AS movie_count
+FROM actor AS ac
+INNER JOIN film_actor AS fa ON ac.actor_id = fa.actor_id
+GROUP BY ac.actor_id
+HAVING COUNT(*) >= 5;
+
+
