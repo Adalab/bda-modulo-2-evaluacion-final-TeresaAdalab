@@ -91,3 +91,13 @@ SELECT title
 FROM film
 WHERE rating NOT IN ('R', 'PG-13');
 
+-- Ejercicio 9:  Cantidad total de películas en cada clasificación  y muestra su clasificación 
+/*
+Hemos usado "COUNT" para contabilizar el número de peliculas en cada grupo de rating,
+creando un alias "total_peli_rating" 
+Después hemos usado la sentencia "GROUP BY" para agrupar las filas en función de varios valores de la columna
+*/
+
+SELECT rating, COUNT(*) AS total_peli_rating
+FROM film
+GROUP BY rating;
