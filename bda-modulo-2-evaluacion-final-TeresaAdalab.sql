@@ -202,3 +202,33 @@ SELECT actor.first_name, actor.last_name
 FROM actor
 LEFT JOIN film_actor ON actor.actor_id = film_actor.actor_id
 WHERE film_actor.actor_id IS NULL;
+
+-- Ejercicio 16: Título de todas las películas que fueron lanzadas entre el año 2005 y 2010.
+
+SELECT title, release_year
+FROM film
+WHERE release_year BETWEEN 2005 AND 2010;
+
+-- Ejercicio 17: Título de todas las películas que son de la misma categoría que "Family".
+
+/*
+Para poder resolver este ejercicio hemos usado una CTE llamada family_category que selecciona el category_id de la 
+tabla category donde el nombre sea Family
+Despues hemos realizado la consulta donde se ha seleccionado el titulo de las peliculas (title) de la tabla film con el alias f
+Mediante el INNER JOIN hemos unido las tablas film y film_category con el flim id y filtramos con "WHERE" incluyendo
+los resultados  donde category_id esté presente en los resultados de la consulta temporal
+Por último tenemos una subconsulta para seleccionar aquellas categorias de producto que son Family
+
+*/
+
+
+WITH family_category AS (
+    SELECT category_id
+    FROM category
+    WHERE name = 'Family'
+)
+SELECT f.title
+FROM film AS f
+INNER JOIN film_category AS fc ON f.film_id = fc.film_id
+WHERE fc.category_id IN 
+	(SELECT category_id FROM family_category );
