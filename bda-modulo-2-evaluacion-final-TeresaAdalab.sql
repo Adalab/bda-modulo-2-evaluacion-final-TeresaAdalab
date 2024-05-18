@@ -188,3 +188,17 @@ SELECT title, description
 FROM film
 WHERE description LIKE '%dog%'
    OR description LIKE '%cat%';
+   
+-- Ejercicio 15: Actor o actriz que no apareca en ninguna película en la tabla film_actor.
+/*
+Seleccionamos los datos del actor de la tabla actor
+LEFT JOIN, realizamos una unión entre las tablas flim_actor y actor usando el actor_id como id, 
+Al usar "LEFT JOIN" incluimos todas las filas de la tabla actor y solo las filas conincidentes de la tabla flim_actor.
+Si no hay coincidencias, los campos de film_actor serán NULL.
+"WHERE " hace un filtro para incluir los valordes donde el actor no aparece en niguna pelicula
+*/
+
+SELECT actor.first_name, actor.last_name
+FROM actor
+LEFT JOIN film_actor ON actor.actor_id = film_actor.actor_id
+WHERE film_actor.actor_id IS NULL;
