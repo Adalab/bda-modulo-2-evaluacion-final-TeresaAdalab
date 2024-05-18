@@ -50,5 +50,16 @@ WHERE length > 120;
 /*
 Hemos usado la tabla actores y seleccionado su nombre y apellidos con un "SELECT"
 */
-SELECT  first_name, last_name
+SELECT  first_name
 FROM actor;
+
+-- Ejercicio 6: Encuentra el nombre y apellido de los actores que tengan "Gibson" en su apellido.
+
+/*
+Hamos a usar el operador "LIKE" para saber coincidencias parciales 
+y "%" para representar cualquier sentencia de caracteres 
+*/
+
+SELECT first_name, last_name
+FROM actor
+WHERE last_name LIKE '%Gibson%';
