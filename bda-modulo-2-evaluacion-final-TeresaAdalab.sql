@@ -153,3 +153,28 @@ FROM film
 GROUP BY rating;
 
 
+-- Ejercicio 13:  Encuentra el nombre y apellido de los actores que aparecen en la película con title "Indian Love".
+/*
+Para resolver este ejercicio hemos realizado una subconsulta que nos permite tener el flim_id 
+y luego otra subconsulta más para tener el actor_id
+
+Primero seleccionamos los campos de nombre y apellidos de la tabla de actores que es la que contiene esta información.
+** Subconsulta 1 WHERE actor.actor_id IN, se filtran los resultados de la tabla actor y solo se incluyen los actores que tenga un actor_id dentro de la 
+** Subconsulta 2 SELECT film_actor.actor_id. Selecciona el "actor_id" de la flim_actor y donde actor flim_id coincida con los resultados que el titulo de la pelicula sea Indian Love
+** Subconsulta 3:  SELECT film_id. Estamos seleccionado de la tabla flim title aquella pelicula cuyo titulo es Indian Love
+
+Es decir usamos varias subconsultas para encontrar primero el film_id de "Indian Love" y luego los actor_id asociados 
+Cogemos  los nombres y apellidos de los actores cuyos actor_id coinciden con los obtenidos en la subconsulta.
+*/
+
+SELECT actor.first_name, actor.last_name
+FROM actor
+WHERE actor.actor_id IN (
+    SELECT film_actor.actor_id
+    FROM film_actor
+    WHERE film_actor.film_id = (
+        SELECT film_id
+        FROM film
+        WHERE film.title = 'Indian Love'
+    )
+);
