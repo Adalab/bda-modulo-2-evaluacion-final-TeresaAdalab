@@ -68,3 +68,14 @@ WHERE last_name LIKE '%Gibson%';
 SELECT first_name, last_name
 FROM actor
 WHERE last_name = "Gibson";
+
+-- Ejercicio 7: Encuentra los nombres de los actores que tengan un actor_id entre 10 y 20.
+
+/*
+Hemos usado "WHERE" para filtrar las condiciones de nuestra consulta, 
+ Se ha usado el operador "BETWEEN" "AND" para especificar nuestro rango de valores entre 10 y 20 inclusive.
+*/
+
+SELECT first_name, last_name
+FROM actor
+WHERE actor_id BETWEEN 10 AND 20;
