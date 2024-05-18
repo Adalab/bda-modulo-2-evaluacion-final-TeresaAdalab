@@ -255,3 +255,12 @@ WITH actor_films AS (
 SELECT a.first_name, a.last_name
 FROM actor AS a
 INNER JOIN actor_films ON a.actor_id = actor_films.actor_id;
+
+-- Ejercicio 19: Encuentra el título  películas que son "R" y tienen una duración mayor a 2 horas en la tabla film..
+SELECT*
+FROM film
+
+SELECT title, rating, length
+FROM film
+WHERE rating = 'R' AND length > 120
+ORDER BY length DESC ;
