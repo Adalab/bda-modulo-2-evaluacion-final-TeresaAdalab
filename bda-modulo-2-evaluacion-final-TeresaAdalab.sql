@@ -28,3 +28,14 @@ LIMIT 5;
 SELECT title, rating
 FROM film
 WHERE rating = 'PG-13';
+
+-- Ejercicio 3: Título y la descripción de  películas que contengan "amazing" .
+
+/*
+Vamos a usar el operador "LIKE" para saber coincidencias parciales 
+y "%" para representar cualquier sentencia de caracteres 
+*/
+
+SELECT title, description
+FROM film
+WHERE description LIKE '% amazing %';
