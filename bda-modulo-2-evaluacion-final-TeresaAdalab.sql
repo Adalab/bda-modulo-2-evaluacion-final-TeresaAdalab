@@ -296,4 +296,23 @@ INNER JOIN film_actor AS fa ON ac.actor_id = fa.actor_id
 GROUP BY ac.actor_id
 HAVING COUNT(*) >= 5;
 
+-- Ejercicio 22: las películas que fueron alquiladas por más de 5 días.
 
+/*
+Creamos una subconsulta para sacar los id  unicos  mediante el IN para seleccionar las peliculas cuyos ID sean diferentes a través de DISTINCT de las peliculas film_id de la tabla rental,
+para saber as peliculas que han sido alquiladas
+Despues con "WHERE DATEDIFF" dentro de la subconsulta hallamos la diferencia entre las fechas de devolucion (return_date) y del alquiler
+(rental_date) que sea mayor que 5
+
+Seleccionamos los titulos de la tabla film los titulos de lsa peliculas y despues con "WHERE" se obtienen los film id que estan dentro de la subconsulta
+
+
+
+*/
+SELECT title
+FROM film
+WHERE film_id IN (
+    SELECT DISTINCT film_id
+    FROM rental
+    WHERE DATEDIFF(return_date, rental_date) > 5
+);
