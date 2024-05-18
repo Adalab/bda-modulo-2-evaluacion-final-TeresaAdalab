@@ -4,7 +4,27 @@ USE sakila;
 Muestra las tablas que tiene la base de datos de sakila.
 */
 SHOW TABLES;
+
 -- Ejercicio 1: Nombres de las películas sin que aparezcan duplicados.
+/*
+Hemos creado un alias "nombre_peli" y hemos usado DISTINCT 
+que nos ha ayudado a eliminar los duplicados para tener solo un titulo de la pelicula
+*/
 SELECT DISTINCT title as "nombre_peli" 
 FROM film;
--- Ejercicio 1: Nombres de las películas sin que aparezcan duplicados.
+
+-- Ejercicio 2: Nombres de películas que tengan una clasificación de "PG-13.
+/*
+En primer lugar vamos a usar "DESCRIBE" para saber el contenido y la estructura de la tabla 
+y seleccionar los  5 primeros registros
+Usamos la clausula "Where" para filtar aquellas peliculas cuyo rating es PG-13.
+*/
+
+DESCRIBE film;
+SELECT *
+FROM film
+LIMIT 5;
+
+SELECT title, rating
+FROM film
+WHERE rating = 'PG-13';
