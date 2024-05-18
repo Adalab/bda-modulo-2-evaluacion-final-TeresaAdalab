@@ -7,10 +7,10 @@ SHOW TABLES;
 
 -- Ejercicio 1: Nombres de las películas sin que aparezcan duplicados.
 /*
-Hemos creado un alias "nombre_peli" y hemos usado DISTINCT 
+Hemos creado un alias "flim_name y hemos usado DISTINCT 
 que nos ha ayudado a eliminar los duplicados para tener solo un titulo de la pelicula
 */
-SELECT DISTINCT title as "nombre_peli" 
+SELECT DISTINCT title as "flim_name"
 FROM film;
 
 -- Ejercicio 2: Nombres de películas que tengan una clasificación de "PG-13.
@@ -141,7 +141,15 @@ INNER JOIN category c ON fc.category_id = c.category_id
 GROUP BY c.name
 ORDER BY total_rentals DESC;
 
+-- Ejercicio 12:  Promedio de duración de las películas para cada clasificación de la tabla flim y  muestra la clasificación junto con el promedio de duración.
+/*
+AVG(length) AS avg_duration: Mediante esta sentencia calculamos el valor medio de la duración (length) de las películas para cada clasificación
+Y le añadimos el alias avg duration y lo hemos redondeado mediante ROUND
+GROUP BY para agruparlo por los resultados de rating
+*/
 
-
+SELECT rating, ROUND(AVG(length), 2) AS avg_duration
+FROM film
+GROUP BY rating;
 
 
