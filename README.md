@@ -15,9 +15,7 @@ Estas tablas contienen información sobre películas, actores, clientes, alquile
 
 ### Desarrollo de Ejercicio 🔧
 
-_Una serie de ejemplos paso a paso que te dice lo que debes ejecutar para tener un entorno de desarrollo ejecutandose_
-
-_Dí cómo será ese paso_
+_la evalución se compone de 25 ejercicios, 23 de los cuales son obligatorios y 2 ellos son bonus_
 
 ```
 Da un ejemplo
@@ -73,7 +71,7 @@ Por favor lee el [CONTRIBUTING.md](https://gist.github.com/villanuevand/xxxxxx) 
 
 * **Teresa García**  -(https://github.com/TeresaAdalab)
 
-También puedes mirar la lista de todos los [contribuyentes](https://github.com/your/project/contributors) quíenes han participado en este proyecto. 
+
 
 ## Licencia 📄
 
@@ -88,9 +86,9 @@ Este proyecto está bajo la Licencia (Tu Licencia) - mira el archivo [LICENSE.md
 * etc.
 
 
-## Pre-requisitos 📋
+## Software Utilizado 📋
 
-_Que cosas necesitas para instalar el software y como instalarlas_
+El trabajo se ha desarrollado mediente el uso de My SQL Workbench
 
 ```
 Da un ejemplo
