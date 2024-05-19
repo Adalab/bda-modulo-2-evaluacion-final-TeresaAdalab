@@ -23,7 +23,10 @@ SELECT DISTINCT title as "film_name"
 FROM film;
 
 ```
-2.Nombres de películas que tengan una clasificación de "PG-13
+2.Nombres de películas que tengan una clasificación de "PG-13"
+
+En primer lugar vamos a usar "DESCRIBE" para saber el contenido y la estructura de la tabla  y seleccionar los  5 primeros registros
+Usamos la clausula "Where" para filtar aquellas peliculas cuyo rating es PG-13.
 
 ## Ejecutando las pruebas ⚙️
 
