@@ -119,7 +119,7 @@ FROM customer c
 INNER JOIN rental r ON c.customer_id = r.customer_id
 GROUP BY c.customer_id, c.first_name, c.last_name;
 
--- Ejercicio 11:  cantidad total de películas alquiladas por categoría y muestra el nombre de la categoría junto con el recuento de alquileres
+-- Ejercicio 11:  Cantidad total de películas alquiladas por categoría y muestra el nombre de la categoría junto con el recuento de alquileres
 /*
 En la primera hemos creado un alias category name para asignar un valor a esta columna
 A continuación contamos el número de alquileres mediante COUNT y creamos para ello el alias "Total_rentals"
@@ -279,7 +279,7 @@ INNER JOIN film f ON fc.film_id = f.film_id
 GROUP BY c.name
 HAVING AVG(f.length) > 120;
 
--- Ejercicio 21: Categorías de películas con un promedio de duración superior a 120 mins y  muestra el nombre de la categoría junto con el promedio de duración.
+-- Ejercicio 21: Actores que ha actuado en al menos de 5 peliculas
 
 /*
 Seleccionamos el mombre y el apellido de la tabla de actores, esta tabla tiene el alias ac
@@ -296,9 +296,10 @@ INNER JOIN film_actor AS fa ON ac.actor_id = fa.actor_id
 GROUP BY ac.actor_id
 HAVING COUNT(*) >= 5;
 
--- Ejercicio 22: las películas que fueron alquiladas por más de 5 días.
+-- Ejercicio 22:  Películas que fueron alquiladas por más de 5 días.
 
-/* Hemos creado una CTE large_rental que va a contener una subconsulta que selecciona los film_id de las peliculas con mas de 5 dias
+/* Resolucion 1. Mediante una  CTE: 
+Hemos creado una CTE large_rental que va a contener una subconsulta que selecciona los film_id de las peliculas con mas de 5 dias
 Con SELECT DISTINCT solo aparece una sola vez film_id de la tabla inventory
 "INNER JOIN" unimos las tablas de rental con la inventarios mediante el inventory_id
 "WHERE DATEDIFF(r.return_date, r.rental_date) > 5" filtra los registros para incluir solo aquellos con una diferencia de más de 5 días entre return_date y rental_date
@@ -315,6 +316,24 @@ SELECT title
 FROM film
 WHERE film_id IN (SELECT film_id FROM  large_rental);
 
+/* Resolucion 2. Mediante una  Subconsulta: 
+La tabla flim (f) seleccionamos aquellos titulos que sean diferentes mediante un DISTINCT, de esta forma eliminamos los duplicados.
+Realizamos un INNER JOIN entre la tabla flim (f) e inventory(i) mediante el flim_id e incluimos 
+y filtramos para incluir los registros donde inventory_id esten en la subconsulta que hemos creado.
+En la subconsulta  SELECT r.inventory_id, seleccionamos los inventory_id de la tabla rental (r) y filtramos aquellos registros
+cuya diferencia entre el rental_date y el return_date sea mayor que 5 usando DATEDIFF
+*/
+
+
+
+SELECT DISTINCT f.title
+FROM film AS f
+INNER JOIN inventory AS i ON f.film_id = i.film_id
+WHERE i.inventory_id IN (
+    SELECT r.inventory_id
+    FROM rental AS r
+    WHERE DATEDIFF(r.return_date, r.rental_date) > 5
+);
 
 -- Ejercicio 23: Nombre y apellido actores que no han actuado en ninguna pelicula de Horror, mediante una subconsulta
 
