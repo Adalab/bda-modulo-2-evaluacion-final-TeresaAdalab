@@ -9,6 +9,7 @@ Para esta evaluación usamos  la BBDD Sakila  que simula una tienda de alquiler 
 * customer (clientes).
 * rental (alquileres).
 * category (categorías).
+
 Estas tablas contienen información sobre películas, actores, clientes, alquileres y más, y se utilizan para realizar consultas y análisis de datos en el contexto de una tienda de alquiler de películas.
 ### Pre-requisitos 📋
 
