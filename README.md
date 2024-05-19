@@ -1,3 +1,4 @@
+
 # Evaluación Módulo 2
 
 _Ejercicio de Evaluación del Módulo 2_
@@ -12,10 +13,9 @@ Para esta evaluación usamos  la BBDD Sakila  que simula una tienda de alquiler 
 
 Estas tablas contienen información sobre películas, actores, clientes, alquileres y más, y se utilizan para realizar consultas y análisis de datos en el contexto de una tienda de alquiler de películas.
 
-
 ### Desarrollo de Ejercicio 🔧
 
-_la evalución se compone de 25 ejercicios, 23 de los cuales son obligatorios y 2 ellos son bonus_
+_La evalución se compone de 25 ejercicios, 23 de los cuales son obligatorios y 2 ellos son bonus_
 
 1. Nombres de las películas sin que aparezcan duplicados.
 2.Nombres de películas que tengan una clasificación de "PG-13".
@@ -36,7 +36,7 @@ _la evalución se compone de 25 ejercicios, 23 de los cuales son obligatorios y 
 17. Título de todas las películas que son de la misma categoría que "Family".
 18. Muestra  nombre y apellido de los actores que aparecen en más de 10 películas.
 19. Encuentra el título  películas que son "R" y tienen una duración mayor a 2 horas en la tabla film.
-20. Categorías de películas con un promedio de duración superior a 120 mins y  muestra el nombre de la categoría junto con el promedio de duración.
+20. Categorías de películas con un promedio de duración superior a 120 mins y  muestra la categoría junto con el promedio de duración.
 21. Actores que ha actuado en al menos de 5 peliculas.
 22. Películas que fueron alquiladas por más de 5 días.
 23. Nombre y apellido actores que no han actuado en ninguna pelicula de Horror, mediante una subconsulta
