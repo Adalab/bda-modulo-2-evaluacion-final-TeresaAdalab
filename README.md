@@ -17,17 +17,13 @@ Estas tablas contienen información sobre películas, actores, clientes, alquile
 
 _la evalución se compone de 25 ejercicios, 23 de los cuales son obligatorios y 2 ellos son bonus_
 
+1. Nombres de las películas sin que aparezcan duplicados.
 ```
-Da un ejemplo
-```
+SELECT DISTINCT title as "film_name"
+FROM film;
 
-_Y repite_
-
 ```
-hasta finalizar
-```
-
-_Finaliza con un ejemplo de cómo obtener datos del sistema o como usarlos para una pequeña demo_
+2.Nombres de películas que tengan una clasificación de "PG-13
 
 ## Ejecutando las pruebas ⚙️
 
