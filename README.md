@@ -91,7 +91,13 @@ Este proyecto está bajo la Licencia (Tu Licencia) - mira el archivo [LICENSE.md
 El trabajo se ha desarrollado mediente el uso de My SQL Workbench
 
 ```
-Da un ejemplo
+-- Introducción y uso de la base de datos
+USE sakila;
+/*
+Muestra las tablas que tiene la base de datos de sakila.
+*/
+SHOW TABLES;
+
 ```
 
 
