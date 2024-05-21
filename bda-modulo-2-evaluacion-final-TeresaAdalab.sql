@@ -385,6 +385,17 @@ WHERE film_id IN (
 -- Ejercicio 25: Actores que han actuado juntos en al menos una película, con nombre apellidos y número de peliculas
 
 /*
+Usamos SELECT CONCAT(a1.first_name, ' ', a1.last_name) tanto para actor 1 como para actor para concatenar el nombre y apellido de cada uno de los actores de las peliculas
+COUNT(*) AS movies_together: Aquí contamos el número de filas en el conjunto de resultados mediante el alias movies_together.
+
+FROM film_actor AS fa: Aquí estamos seleccionando la tabla film_actor y asignándole un alias (fa1 /fa2)
+De esta forma unimos la informacion sobre las pelicula con los actores que han actuado y asi poder extrear los actores que han trabajdo juntos. 
+
+JOIN con actor (a1) y actor (a2): Se unen las tablas actor dos veces para obtener la información de los actores en cada par. Utilizamos los alias a1 y a2 para distinguir entre los dos actores en cada par.
+
+Agregación y conteo: Contamos el número de películas en las que cada par de actores ha actuado juntos. Agrupamos los resultados por los nombres de los actores.
+f
+Ordenación: Ordenamos los resultados en orden descendente según el número de películas en las que los actores han actuado juntos.
 
 
 
