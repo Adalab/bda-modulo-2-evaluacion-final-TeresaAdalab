@@ -402,42 +402,6 @@ Ordenación: Ordenamos los resultados en orden descendente según el número de 
 
 
 
-explicame esta parte del codigo SELECT 
-    CONCAT(a1.first_name, ' ', a1.last_name) AS actor1,
-    CONCAT(a2.first_name, ' ', a2.last_name) AS actor2,
-    COUNT(*) AS movies_together
-FROM 
-ChatGPT
-Claro, esta parte del código se encarga de seleccionar y concatenar los nombres y apellidos de los actores y contar el número de películas en las que han actuado juntos. Veamos en detalle:
-
-SELECT CONCAT(a1.first_name, ' ', a1.last_name) AS actor1: En esta línea, estamos utilizando la función CONCAT para combinar el first_name y el last_name del primer actor (a1) y así formar su nombre completo. Usamos un espacio en blanco entre el nombre y el apellido para separarlos. El alias actor1 se asigna al resultado concatenado.
-
-SELECT CONCAT(a2.first_name, ' ', a2.last_name) AS actor2: De manera similar, esta línea concatena el first_name y el last_name del segundo actor (a2) para formar su nombre completo. El alias actor2 se asigna al resultado.
-
-COUNT(*) AS movies_together: Aquí contamos el número de filas en el conjunto de resultados. Cada fila representa una película en la que los dos actores han actuado juntos. Por lo tanto, el recuento nos da el número total de películas en las que los actores han trabajado juntos. Este recuento se etiqueta con el alias movies_together.
-
-En resumen, esta parte del código selecciona los nombres completos de los dos actores y cuenta el número de películas en las que han actuado juntos. El resultado final será una lista de pares de actores junto con la cantidad de películas en las que han trabajado juntos.
-
-explicame esta parte del codigo FROM 
-    film_actor AS fa1
-JOIN 
-    film_actor AS fa2 ON fa1.film_id = fa2.film_id AND fa1.actor_id < fa2.actor_id
-JOIN 
-    actor AS a1 ON fa1.actor_id = a1.actor_id
-JOIN 
-    actor AS a2 ON fa2.actor_id = a2.actor_id
-ChatGPT
-Claro, esta parte del código se encarga de realizar las uniones necesarias entre las tablas film_actor y actor para obtener la información sobre los actores y las películas en las que han actuado juntos. Veamos en detalle:
-
-FROM film_actor AS fa1: Aquí estamos seleccionando la tabla film_actor y asignándole un alias fa1. Esto nos permite hacer referencia a esta tabla con el alias fa1 en el resto de la consulta.
-
-JOIN film_actor AS fa2 ON fa1.film_id = fa2.film_id AND fa1.actor_id < fa2.actor_id: Estamos realizando un JOIN de la tabla film_actor consigo misma utilizando un segundo alias fa2. La condición fa1.film_id = fa2.film_id AND fa1.actor_id < fa2.actor_id asegura que obtengamos todos los pares únicos de actores que han actuado juntos en al menos una película. La parte fa1.actor_id < fa2.actor_id garantiza que cada par de actores se cuente solo una vez y evita duplicados.
-
-JOIN con actor (a1) y actor (a2): Se unen las tablas actor dos veces para obtener la información de los actores en cada par mediante los alias a1 y a2
-
-Agrupamos los resultados por los nombres de los actores por GROUP BY
-ORDER BY  Ordenamos los resultados en orden descendente según el número de películas 
-
 */
 
 
