@@ -1,7 +1,7 @@
 
 # Evaluación Módulo 2
 
-_Ejercicio de Evaluación del Módulo 2_
+Ejercicio de Evaluación del Módulo 2 Base de datos sakila
 
 ## Base de datos 🚀
 Para esta evaluación usamos  la BBDD Sakila  que simula una tienda de alquiler de películas. Contiene las siguientes tablas:
